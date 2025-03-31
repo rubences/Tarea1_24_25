@@ -25,8 +25,11 @@ class Game:
             print("Game is not running.")
 
     def end_game(self):
+        if isinstance(self.opponent, Boss) and self.lives > 0:
+            print("Congratulations! You defeated the final boss and won the game!")
+        else:
+            print("Game ended!")
         self.is_running = False
-        print("Game ended!")
 
     def reset(self):
         self.score = 0
