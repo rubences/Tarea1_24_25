@@ -1,4 +1,7 @@
 from Character import Character
+import time
+
+
 
 class Player(Character):
     def __init__(self, name, score=0, lives=3):
@@ -48,5 +51,17 @@ class Player(Character):
         self.lives = data["lives"]
     def __str__(self):
         return f"Player {self.name} with score {self.score} and lives {self.lives}"
+    
+
+    def respawn(self):
+        """
+        Respawns the player after being hit, if lives remain.
+        """
+        if self.lives > 0:
+            print(f"{self.name} is respawning...")
+            time.sleep(2)  # Simulate a brief delay for respawning
+            print(f"{self.name} has respawned!")
+        else:
+            print(f"{self.name} cannot respawn. No lives remaining.")
     
     
