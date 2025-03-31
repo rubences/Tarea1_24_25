@@ -1,4 +1,5 @@
 from Character import Character
+from Shot import Shot  # Importing here to avoid circular imports
 import time
 
 
@@ -9,19 +10,55 @@ class Player(Character):
         self.score = score
         self.lives = lives
 
+    
+    def __str__(self):
+        return f"Player {self.name} with score {self.score} and lives {self.lives}"
+
     def move(self, direction):
-        # Implement movement logic here
-        print(f"{self.name} moves {direction}")
+        """
+        Moves the player in the specified direction.
+        :param direction: A string indicating the direction ('up', 'down', 'left', 'right').
+        """
+        valid_directions = ['up', 'down', 'left', 'right']
+        if direction not in valid_directions:
+            print(f"Invalid direction: {direction}. Valid directions are: {valid_directions}")
+            return
+
+        # Example logic for movement
+        if direction == 'up':
+            print(f"{self.name} moves up.")
+        elif direction == 'down':
+            print(f"{self.name} moves down.")
+        elif direction == 'left':
+            print(f"{self.name} moves left.")
+        elif direction == 'right':
+            print(f"{self.name} moves right.")
 
     def shoot(self):
-        # Implement shooting logic here
-        print(f"{self.name} shoots!")
+        """
+        Creates a shot fired by the player.
+        """
+
+        shot = Shot(self.name, is_enemy_shot=False)
+        print(f"{self.name} shoots a shot!")
+        return shot
 
     def collide(self, other_entity):
-        # Implement collision logic here
+        """
+        Handles collision logic with another entity.
+        :param other_entity: The entity this player collides with.
+        """
         if hasattr(other_entity, "is_enemy_shot") and other_entity.is_enemy_shot:
             self.lives -= 1
-            print(f"{self.name} was hit! Lives remaining: {self.lives}")
+            print(f"{self.name} was hit by an enemy shot! Lives remaining: {self.lives}")
+            if self.lives <= 0:
+                print(f"Game Over for {self.name}!")
+        elif hasattr(other_entity, "is_power_up") and other_entity.is_power_up:
+            self.score += other_entity.value
+            print(f"{self.name} collected a power-up! Score increased by {other_entity.value}. Total score: {self.score}")
+        elif hasattr(other_entity, "is_obstacle") and other_entity.is_obstacle:
+            self.lives -= 1
+            print(f"{self.name} collided with an obstacle! Lives remaining: {self.lives}")
             if self.lives <= 0:
                 print(f"Game Over for {self.name}!")
 
@@ -31,27 +68,7 @@ class Player(Character):
         self.lives = 3
         print(f"{self.name} has been reset.")
     
-    def serialize(self):
-        """
-        Serializes the player's state.
-        :return: A dictionary representing the player's state.
-        """
-        data = super().serialize()
-        data.update({
-            "score": self.score,
-            "lives": self.lives
-        })
-        return data
-    def deserialize(self, data):
-        """"
-        "Deserializes the player's state from a dictionary."
-        """
-        super().deserialize(data)
-        self.score = data["score"]
-        self.lives = data["lives"]
-    def __str__(self):
-        return f"Player {self.name} with score {self.score} and lives {self.lives}"
-    
+  
 
     def respawn(self):
         """
