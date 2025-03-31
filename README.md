@@ -55,6 +55,8 @@ El proyecto está organizado en varias clases que representan los elementos prin
 
 ## Diagrama de Clases
 
+![Diagrama de Clases](diagram.png)
+
 El archivo `diagram.png` contiene un diagrama de clases que ilustra la relación entre las clases del proyecto.
 
 ## Requisitos Técnicos
