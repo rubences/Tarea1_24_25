@@ -2,6 +2,8 @@ from Player import Player
 from Opponent import Opponent
 from Boss import Boss  
 
+# The score attribute is already defined in the Game class's __init__ method.
+
 
 class Game:
     def __init__(self):
