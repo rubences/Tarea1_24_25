@@ -84,12 +84,25 @@ class Entity:
         raise StopIteration
     def __reversed__(self):
         return reversed((self.x, self.y, self.image))
-    def __len__(self):
-        
-    
 
-    
-    
-
-
+    def __sizeof__(self):
+        return super().__sizeof__() + sum(map(lambda x: x.__sizeof__(), self.__dict__.values()))
+    def __del__(self):
+        # Placeholder for cleanup logic
+        print(f"Deleting entity at ({self.x}, {self.y}) with image {self.image}")
+        del self.x
+        del self.y
+        del self.image
+    def __enter__(self):
+        # Placeholder for context manager entry logic
+        print(f"Entering context with entity at ({self.x}, {self.y}) with image {self.image}")
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        # Placeholder for context manager exit logic
+        print(f"Exiting context with entity at ({self.x}, {self.y}) with image {self.image}")
+        return False
+    def __call__(self, *args, **kwargs):
+        # Placeholder for callable logic
+        print(f"Calling entity at ({self.x}, {self.y}) with image {self.image}")
+        return self
     
