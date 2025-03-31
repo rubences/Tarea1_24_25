@@ -50,6 +50,42 @@ class Game:
         print(f"Player {self.player.name} starts with score {self.player.score}.")
         self.player.lives = 3
 
+    def spawn_player(self, player_name):
+        """
+        Spawns a player in the game.
+        :param
+        player_name: Name of the player.
+        """
+        if self.is_running:
+            self.player = Player(name=player_name)
+            print(f"Player {self.player.name} spawned!")
+        else:
+            print("Game is not running. Cannot spawn player.")
+        self.player.lives = 3
+        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
+        self.player.score = 0
+        self.player = Player(name=player_name)
+        self.player.lives = 3
+        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
+
+
+    def update_player(self):
+        """
+        Updates the player's position and state.
+        """
+        if self.is_running and self.player:
+            print(f"Updating player {self.player.name}...")
+            # Add logic to update player's position here
+            self.player.move()
+            print(f"Player {self.player.name} is moving.")
+        else:
+            print("Game is not running or no player to update.")
+        self.player = Player(name=player_name)
+        self.player.lives = 3
+        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
+        self.player.score = 0
+ 
+
     def spawn_opponent(self, is_star=False):
         """
         Spawns an opponent in the game.
