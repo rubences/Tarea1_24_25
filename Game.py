@@ -108,4 +108,13 @@ class Game:
             print("A boss has appeared! It moves twice as fast!")
         else:
             print("Game is not running. Cannot spawn a boss.")
+
+    def display_score_and_lives(self):
+        """
+        Displays the current score and remaining lives of the player.
+        """
+        if self.is_running:
+            print(f"Score: {self.score}, Lives: {self.lives}")
+        else:
+            print("Game is not running.")
     
