@@ -118,3 +118,13 @@ class Game:
         else:
             print("Game is not running.")
     
+    def remove_opponent(self):
+        """
+        Removes the current opponent and spawns a boss if the opponent is defeated.
+        """
+        if self.is_running and self.opponent:
+            print(f"Opponent {self.opponent} has been defeated!")
+            self.opponent = None
+            self.spawn_boss()
+        else:
+            print("Game is not running or no opponent to remove.")
