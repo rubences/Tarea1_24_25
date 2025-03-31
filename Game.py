@@ -1,5 +1,6 @@
 from Player import Player
 from Opponent import Opponent
+from Boss import Boss  
 
 
 class Game:
@@ -94,4 +95,15 @@ class Game:
                 self.end_game()
         else:
             print("Game is not running or no lives left.")
+
+    def spawn_boss(self):
+        """
+        Spawns a boss when the player defeats an enemy.
+        The boss moves twice as fast as a regular opponent.
+        """
+        if self.is_running:
+            self.opponent = Boss(speed_multiplier=2)
+            print("A boss has appeared! It moves twice as fast!")
+        else:
+            print("Game is not running. Cannot spawn a boss.")
     

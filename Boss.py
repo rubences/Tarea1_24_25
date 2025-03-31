@@ -1,6 +1,6 @@
 from Opponent import Opponent
 
-class FinalBoss(Opponent):
+class Boss(Opponent):
     def __init__(self, x, y, speed):
         # Llama al constructor de la clase base Opponent
         super().__init__(x, y, speed * 2)  # El jefe final se mueve el doble de rápido
