@@ -1,3 +1,7 @@
+from Player import Player
+from Opponent import Opponent
+
+
 class Game:
     def __init__(self):
         self.score = 0
@@ -69,4 +73,25 @@ class Game:
             self.score += 1
         else:
             print("Game is not running or invalid enemy.")
+
+    def initialize_lives(self, lives=3):
+        """
+        Initializes the player's lives.
+        :param lives: Number of lives to start with.
+        """
+        self.lives = lives
+        print(f"Player starts with {self.lives} lives.")
+
+    def lose_life(self):
+        """
+        Decreases the player's lives by 1. Ends the game if lives reach 0.
+        """
+        if self.is_running and self.lives > 0:
+            self.lives -= 1
+            print(f"Player lost a life! Lives remaining: {self.lives}")
+            if self.lives == 0:
+                print("No lives remaining. Game over!")
+                self.end_game()
+        else:
+            print("Game is not running or no lives left.")
     

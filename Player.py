@@ -16,7 +16,11 @@ class Player(Character):
 
     def collide(self, other_entity):
         # Implement collision logic here
-        print(f"{self.name} collides with {other_entity.name}")
+        if hasattr(other_entity, "is_enemy_shot") and other_entity.is_enemy_shot:
+            self.lives -= 1
+            print(f"{self.name} was hit! Lives remaining: {self.lives}")
+            if self.lives <= 0:
+                print(f"Game Over for {self.name}!")
 
     def reset(self):
         # Reset player-specific attributes
