@@ -61,3 +61,26 @@ class Boss(Opponent):
         """
         print("¡El jefe final ha sido derrotado!")
 
+    def is_final_boss(self):
+        """
+        Indica si este oponente es el jefe final.
+        :return: True, ya que esta clase representa al jefe final.
+        """
+        return True
+    
+    def is_boss(self):
+        """
+        Returns True if the character is a boss, False otherwise.
+        """
+        return hasattr(self, "is_final_boss") and self.is_final_boss()
+
+    def defeat_enemy(self):
+        """
+        Handles logic when the player defeats an enemy.
+        If an enemy is defeated, a final boss is spawned.
+        """
+        # Example logic to spawn a boss
+        boss = Boss(self.x, self.y, self.speed)  # Create a boss with the current position and speed
+        boss.is_final_boss = True  # Mark this character as the final boss
+        return boss
+
