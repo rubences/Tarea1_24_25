@@ -44,3 +44,20 @@ class Boss(Opponent):
         # Implementa la lógica para verificar si el jefe final golpea un objetivo
         print("El jefe final ha golpeado un objetivo.")
 
+
+    def take_damage(self, damage):
+        """
+        Reduce la salud del jefe final al recibir daño.
+        :param damage: Cantidad de daño recibido.
+        """
+        self.health -= damage
+        print(f"El jefe final recibe {damage} de daño. Salud restante: {self.health}")
+        if self.health <= 0:
+            self.defeated()
+
+    def defeated(self):
+        """
+        Lógica para manejar cuando el jefe final es derrotado.
+        """
+        print("¡El jefe final ha sido derrotado!")
+
