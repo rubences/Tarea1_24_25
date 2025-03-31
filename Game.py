@@ -59,3 +59,14 @@ class Game:
         """
         return f"Game state: score={self.score}, running={self.is_running}, player={self.player}, opponent={self.opponent}"
     
+    def convert_enemy_to_star(self, enemy):
+        """
+        Converts an enemy to a star and increments the score.
+        :param enemy: The enemy to be converted.
+        """
+        if self.is_running and enemy:
+            print(f"Enemy {enemy} converted to a star!")
+            self.score += 1
+        else:
+            print("Game is not running or invalid enemy.")
+    
