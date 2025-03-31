@@ -4,6 +4,8 @@ Este es mi primer repositorio en GitHub. Aquí se encuentra la tarea 1 de la mat
 
 Este es mi link del repositorio:
 
+https://github.com/rubences/Tarea1_24_25.git
+
 
 
 # Desarrollo de un Juego de Disparos en Python utilizando Programación Orientada a Objetos (POO)
