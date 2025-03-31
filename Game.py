@@ -38,36 +38,54 @@ class Game:
         self.is_running = False
         print("Game has been reset.")
 
-    def serialize(self):
+    def initialize_player(self, player_name):
         """
-        Serializes the game state.
-        :return: A dictionary representing the game state.
+        Initializes the player with a given name.
+        :param player_name: Name of the player.
         """
-        return {
-            "score": self.score,
-            "is_running": self.is_running,
-            "player": self.player.serialize() if self.player else None,
-            "opponent": self.opponent.serialize() if self.opponent else None
-        }
-    def deserialize(self, data):
-        """"
-        Deserializes the game state from a dictionary."
-        """
-        self.score = data["score"]
-        self.is_running = data["is_running"]
-        if data["player"]:
-            self.player = Player()
-            self.player.deserialize(data["player"])
-        if data["opponent"]:
-            self.opponent = Opponent()
-            self.opponent.deserialize(data["opponent"])
+        self.player = Player(name=player_name)
+        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
+        self.player.initialize_lives()
+        self.player.score = 0
+        print(f"Player {self.player.name} starts with score {self.player.score}.")
+        self.player.lives = 3
 
-    def __str__(self):
+    def spawn_opponent(self, is_star=False):
         """
-        Returns a string representation of the game.
-        :return: A string representing the game state.
+        Spawns an opponent in the game.
+        :param is_star: Boolean indicating if the opponent is a star.
         """
-        return f"Game state: score={self.score}, running={self.is_running}, player={self.player}, opponent={self.opponent}"
+        if self.is_running:
+            self.opponent = Opponent(is_star=is_star)
+            print(f"Opponent spawned! Is star: {is_star}")
+        else:
+            print("Game is not running. Cannot spawn opponent.")
+        self.opponent = Opponent(is_star=is_star)
+        self.opponent.lives = 3
+        print(f"Opponent {self.opponent} initialized with {self.opponent.lives} lives.")
+        self.opponent.score = 0
+        
+    def update_opponent(self):
+        """
+        Updates the opponent's position and state.
+        """
+        if self.is_running and self.opponent:
+            print(f"Updating opponent {self.opponent}...")
+            # Add logic to update opponent's position here
+            self.opponent.move()
+            if self.opponent.is_star:
+                print("Opponent is a star!")
+            else:
+                print("Opponent is not a star.")
+        else:
+            print("Game is not running or no opponent to update.")
+        self.opponent = Opponent(is_star=is_star)
+        self.opponent.lives = 3
+        print(f"Opponent {self.opponent} initialized with {self.opponent.lives} lives.")
+        self.opponent.score = 0
+        self.opponent = Opponent(is_star=is_star)
+
+    
     
     def convert_enemy_to_star(self, enemy):
         """
