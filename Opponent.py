@@ -17,7 +17,9 @@ class Opponent(Character):
         Handles collision with another entity.
         :param other_entity: The entity this opponent collides with.
         """
-        # Implement collision logic here
+        if other_entity.type == "player_bullet":
+            self.is_alive = False
+            other_entity.owner.score += 1  # Increment the player's score
         pass
     def reset(self):
         """"
