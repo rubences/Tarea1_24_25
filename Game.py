@@ -41,7 +41,7 @@ class Game:
         }
     def deserialize(self, data):
         """"
-        "Deserializes the game state from a dictionary."
+        Deserializes the game state from a dictionary."
         """
         self.score = data["score"]
         self.is_running = data["is_running"]
@@ -51,7 +51,7 @@ class Game:
         if data["opponent"]:
             self.opponent = Opponent()
             self.opponent.deserialize(data["opponent"])
-            
+
     def __str__(self):
         """
         Returns a string representation of the game.
